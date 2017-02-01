@@ -44,6 +44,7 @@ var Player = function () {
     this.x = 200;
     this.y = 375;
     this.points = 500;
+    this.endGame = false;
 };
 
 Player.prototype.update = function() {
@@ -67,7 +68,7 @@ Player.prototype.handleInput = function(input) {
         this.y -= 80;
         if (this.y <= -25) {
             this.points += 50;
-            if (this.points >= 550) {
+            if (this.points >= 1000) {
                 this.win();
             }
             this.reset();
@@ -86,25 +87,13 @@ Player.prototype.reset = function() {
 };
 
 Player.prototype.win = function() {
-    player.points += "       YOU WIN!";
-    document.removeEventListener('keyup', function(e) {
-    var allowedKeys = {
-        37: 'left',
-        38: 'up',
-        39: 'right',
-        40: 'down'
-    }});;
+    this.points += "       YOU WIN!";
+    this.endGame = true;
 }
 
 Player.prototype.lose = function() {
-    player.points += "       GAME OVER!"
-    document.removeEventListener('keyup', function(e) {
-    var allowedKeys = {
-        37: 'left',
-        38: 'up',
-        39: 'right',
-        40: 'down'
-    }});
+    this.points += "       GAME OVER!";
+    this.endGame = true;
 }
 
 // This listens for key presses and sends the keys to the
