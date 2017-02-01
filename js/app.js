@@ -10,7 +10,7 @@ var Enemy = function(id) {
     this.enemyId = id;
 };
 
-numberOfEnemies = 3
+var numberOfEnemies = 3;
 
 // Update the enemy's position, and check for a collision
 // Parameter: dt, a time delta between ticks
@@ -22,9 +22,14 @@ Enemy.prototype.update = function(dt) {
     }
 };
 
+const PLAYER_WIDTH = 50;
+const PLAYER_HEIGHT = 50;
+const ENEMY_WIDTH = 50;
+const ENEMY_HEIGHT = 20;
+
 Enemy.prototype.checkForCollision = function(player) {
-   if (Math.abs(player.x - this.x) < 10 && Math.abs(player.y - this.y) < 10)
-   {
+   if (player.x < (this.x + ENEMY_WIDTH) && (player.x + PLAYER_WIDTH) > this.x &&
+       player.y < (this.y + ENEMY_HEIGHT) && (PLAYER_HEIGHT + player.y) > this.y) {
         player.points -= 50;
         player.reset();
    }
@@ -37,7 +42,7 @@ Enemy.prototype.render = function() {
 Enemy.prototype.reset = function(id) {
     this.x = 10;
     this.y = 220 - 80 * (id);
-}
+};
 
 var Player = function () {
     this.sprite = 'images/char-princess-girl.png';
@@ -48,8 +53,8 @@ var Player = function () {
 };
 
 Player.prototype.update = function() {
-    if (player.points <= 0) {
-        player.lose();
+    if (this.points <= 0) {
+        this.lose();
     }
 };
 
@@ -57,16 +62,23 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+const BOX_WIDTH = 100;
+const BOX_HEIGHT = 80;
+const TOP_BOUNDARY = -25;
+const BOTTOM_BOUNDARY = 375;
+const LEFT_BOUNDARY = 0;
+const RIGHT_BOUNDARY = 400;
+
 Player.prototype.handleInput = function(input) {
-    if (input === 'left' && ((this.x - 100) >= 0)) {
-        this.x -= 100;
+    if (input === 'left' && ((this.x - BOX_WIDTH) >= LEFT_BOUNDARY)) {
+        this.x -= BOX_WIDTH;
     }
-    else if (input === 'right' && ((this.x + 100) <= 400)) {
-        this.x += 100;
+    else if (input === 'right' && ((this.x + BOX_WIDTH) <= RIGHT_BOUNDARY)) {
+        this.x += BOX_WIDTH;
     }
-    else if (input === 'up' && ((this.y - 80) >= -25)) {
-        this.y -= 80;
-        if (this.y <= -25) {
+    else if (input === 'up' && ((this.y - BOX_HEIGHT) >= TOP_BOUNDARY)) {
+        this.y -= BOX_HEIGHT;
+        if (this.y <= TOP_BOUNDARY) {
             this.points += 50;
             if (this.points >= 1000) {
                 this.win();
@@ -74,8 +86,8 @@ Player.prototype.handleInput = function(input) {
             this.reset();
         }
     }
-    else if (input === 'down' && ((this.y + 80) <= 375)) {
-        this.y += 80;
+    else if (input === 'down' && ((this.y + BOX_HEIGHT) <= BOTTOM_BOUNDARY)) {
+        this.y += BOX_HEIGHT;
     }
     else {
     }
@@ -89,12 +101,12 @@ Player.prototype.reset = function() {
 Player.prototype.win = function() {
     this.points += "       YOU WIN!";
     this.endGame = true;
-}
+};
 
 Player.prototype.lose = function() {
     this.points += "       GAME OVER!";
     this.endGame = true;
-}
+};
 
 // This listens for key presses and sends the keys to the
 // Player.handleInput() method.
