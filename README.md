@@ -3,6 +3,8 @@
 
 This project required developing a Frogger-like arcade game using HTML5 Canvas.
 
+## The Site
+
 The website is hosted on Github pages:
 [https://ahahn15.github.io/Arcade-Game/](https://ahahn15.github.io/Arcade-Game/)
 
