@@ -3,8 +3,8 @@
 
 This project required developing a Frogger-like arcade game using HTML5 Canvas.
 
-## How to get started:
-* Open the file index.HTML using a browser of your choice.
+The website is hosted on Github pages:
+[https://ahahn15.github.io/Arcade-Game/](https://ahahn15.github.io/Arcade-Game/)
 
 ## How to play:
 * The objective of the game is to earn points by reaching the water without colliding into an enemy bug.
