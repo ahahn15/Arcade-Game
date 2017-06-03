@@ -1,7 +1,10 @@
-# ARCADE GAME
+# Arcade Game project
+*Project #4 of the Udacity Front End Developer Nanodegree*
+
+This project required developing a Frogger-like arcade game using HTML5 Canvas.
 
 ## How to get started:
-* Open the file index.HTML using a browser of your choice such as Chrome or FireFox.
+* Open the file index.HTML using a browser of your choice.
 
 ## How to play:
 * The objective of the game is to earn points by reaching the water without colliding into an enemy bug.
